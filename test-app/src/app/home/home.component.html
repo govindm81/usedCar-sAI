@@ -1,0 +1,65 @@
+<div class="home-container">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">AutoDeal</div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search by make, model, or price...">
+                <button>Search</button>
+            </div>
+            <div class="nav-icons">
+                <div class="notification-wrapper">
+                    <span class="bell-icon" (click)="toggleNotifications()">
+                        🔔
+                        <span class="badge" *ngIf="unreadCount > 0">{{ unreadCount }}</span>
+                    </span>
+
+                    <div class="notification-dropdown" *ngIf="showNotifications">
+                        <div class="dropdown-header">
+                            <span>Notifications</span>
+                            <small (click)="markAllAsRead()">Mark all as read</small>
+                        </div>
+                        <div class="dropdown-list">
+                            <div class="notification-item" *ngFor="let notification of notifications"
+                                [class.unread]="!notification.read">
+                                <p class="message">{{ notification.message }}</p>
+                                <span class="time">{{ notification.time }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <span class="user-icon" routerLink="/settings" style="cursor: pointer;">👤</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Find Your Perfect Drive</h1>
+            <p>Certified pre-owned vehicles at unbeatable prices.</p>
+            <button class="cta-btn">Browse Inventory</button>
+        </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="products-section">
+        <h2>Latest Arrivals</h2>
+        <div class="product-grid">
+            <div class="product-card" *ngFor="let car of vehicles">
+                <div class="product-image">
+                    <img [src]="car.carImage" [alt]="car.make + ' ' + car.model">
+                    <span class="category-tag">{{ car.condition }}</span>
+                </div>
+                <div class="product-info">
+                    <h3>{{ car.year }} {{ car.make }} {{ car.model }}</h3>
+                    <p class="mileage">{{ car.mileage | number }} miles</p>
+                    <div class="card-footer">
+                        <p class="price">{{ car.price | currency:'INR' }}</p>
+                        <button class="view-btn" [routerLink]="['/vehicle', car.id]">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

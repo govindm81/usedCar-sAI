@@ -1,0 +1,57 @@
+<div class="detail-container">
+    <header class="detail-header">
+        <a routerLink="/home" class="back-link">← Back to Listings</a>
+    </header>
+
+    <main class="content-wrapper" *ngIf="vehicle; else notFound">
+        <div class="image-gallery">
+            <img [src]="vehicle.carImage" [alt]="vehicle.make + ' ' + vehicle.model">
+        </div>
+
+        <div class="info-panel">
+            <div class="title-section">
+                <span class="condition-tag">{{ vehicle.condition }}</span>
+                <h1>{{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }}</h1>
+                <p class="price">{{ vehicle.price | currency:'INR' }}</p>
+            </div>
+
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="label">Mileage</span>
+                    <span class="value">{{ vehicle.mileage | number }} km</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">Fuel Type</span>
+                    <span class="value">{{ vehicle.fuelType }}</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">Transmission</span>
+                    <span class="value">{{ vehicle.transmission }}</span>
+                </div>
+                <div class="spec-item">
+                    <span class="label">Ownership</span>
+                    <span class="value">{{ vehicle.owner }}</span>
+                </div>
+            </div>
+
+            <div class="description-box">
+                <h3>Vehicle Description</h3>
+                <p>
+                    This {{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }} is in {{
+                    vehicle.condition.toLowerCase() }} condition.
+                    Always serviced at authorized centers. Ideally suited for city driving and long highway trips.
+                    Contact us today to schedule a test drive.
+                </p>
+            </div>
+
+            <button class="contact-btn" (click)="contactSeller()">Contact Seller</button>
+        </div>
+    </main>
+
+    <ng-template #notFound>
+        <div class="not-found">
+            <h2>Vehicle not found</h2>
+            <a routerLink="/home">Return Home</a>
+        </div>
+    </ng-template>
+</div>
