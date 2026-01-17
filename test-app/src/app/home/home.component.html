@@ -34,6 +34,8 @@
                     </div>
                 </div>
                 <span class="user-icon" routerLink="/settings" style="cursor: pointer;">👤</span>
+                <button *ngIf="authService.isLoggedIn$ | async" (click)="logout()"
+                    style="margin-left: 10px; padding: 5px 10px; cursor: pointer; background: transparent; color: white; border: 1px solid white; border-radius: 4px;">Logout</button>
             </div>
         </div>
     </nav>

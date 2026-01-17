@@ -48,4 +48,8 @@ export class HomeComponent implements OnInit {
     get unreadCount(): number {
         return this.notifications.filter(n => !n.read).length;
     }
+
+    logout() {
+        this.authService.logout();
+    }
 }

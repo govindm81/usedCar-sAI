@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
     selector: 'app-login',
@@ -28,7 +29,7 @@ export class LoginComponent {
     loginForm: FormGroup;
     focusedInput: string | null = null;
 
-    constructor(private fb: FormBuilder, private router: Router) {
+    constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
         this.loginForm = this.fb.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]]
@@ -38,7 +39,9 @@ export class LoginComponent {
     onSubmit() {
         if (this.loginForm.valid) {
             const { email, password } = this.loginForm.value;
+            // Simplified check for demo purposes
             if (email === 'admin@shop.com' && password === 'password') {
+                this.authService.login();
                 this.router.navigate(['/home']);
             } else {
                 alert('Invalid credentials! Try admin@shop.com / password');
