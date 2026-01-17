@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Vehicle, VehicleService } from '../vehicle.service';
+import { AuthService } from '../auth.service';
 
 interface AppNotification {
     id: number;
@@ -28,7 +29,7 @@ export class HomeComponent implements OnInit {
         { id: 4, message: 'Welcome to AutoDeal Premium.', time: '1 day ago', read: true }
     ];
 
-    constructor(private vehicleService: VehicleService) { }
+    constructor(private vehicleService: VehicleService, public authService: AuthService) { }
 
     ngOnInit() {
         this.vehicleService.getVehicles().subscribe(data => {

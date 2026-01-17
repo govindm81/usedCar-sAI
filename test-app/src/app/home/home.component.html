@@ -7,6 +7,11 @@
                 <input type="text" placeholder="Search by make, model, or price...">
                 <button>Search</button>
             </div>
+            <div class="auth-buttons" *ngIf="!(authService.isLoggedIn$ | async)"
+                style="display: flex; gap: 10px; margin-right: 20px;">
+                <button routerLink="/login" style="padding: 8px 16px; cursor: pointer;">Login</button>
+                <button routerLink="/signup" style="padding: 8px 16px; cursor: pointer;">Signup</button>
+            </div>
             <div class="nav-icons">
                 <div class="notification-wrapper">
                     <span class="bell-icon" (click)="toggleNotifications()">

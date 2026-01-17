@@ -3,6 +3,7 @@
     "/home",
     "/login",
     "/settings",
-    "/settings/edit-profile"
+    "/settings/edit-profile",
+    "/signup"
   ]
 }
